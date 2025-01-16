@@ -19,6 +19,23 @@ def std_abnormal(resorts, col_name):
     print("Abnormal Data:")
     print(abnormal_data[['Resort', col_name]])
 
+def quant_abnormal(resorts, column_name):
+    lower_quantile = resorts[column_name].quantile(0.25)
+    upper_quantile = resorts[column_name].quantile(0.75)
+
+    # Define the interquartile range (IQR)
+    iqr = upper_quantile - lower_quantile
+
+    # Define the lower and upper bounds for abnormal data
+    lower_bound = lower_quantile - 1.5 * iqr
+    upper_bound = upper_quantile + 1.5 * iqr
+
+    # Find abnormal data points
+    abnormal_data = resorts[(resorts[column_name] < lower_bound) | (resorts[column_name] > upper_bound)]
+
+    print("Abnormal Data:")
+    print(abnormal_data[['Resort', column_name]])
+
 if __name__ == '__main__':
     std_abnormal(resorts, 'Total slopes')
     std_abnormal(resorts, 'Price')

@@ -1,32 +1,83 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+import numpy as np
+from datetime import datetime
+from scipy.spatial import cKDTree
+from std_abnormal import std_abnormal
+from mahalanobis_abnormal import abnormal_2d, abnormal_3d
 
-# Load resorts.csv with specified encoding
-resorts = pd.read_csv('resorts.csv', encoding='latin1')
+resorts = pd.read_csv("resorts.csv", encoding='latin1')
+snow = pd.read_csv("snow.csv", encoding='latin1')
 
-# Calculate quantiles for 'Total slopes' and 'Price'
-def find_abnormalities(resorts, column_name):
-    lower_quantile = resorts[column_name].quantile(0.25)
-    upper_quantile = resorts[column_name].quantile(0.75)
 
-    # Define the interquartile range (IQR)
-    iqr = upper_quantile - lower_quantile
+def precompute_season_lengths(seasons):
+    months = {"January": 1, "February": 2, "March": 3, "April": 4, "May": 5,
+              "June": 6, "July": 7, "August": 8, "September": 9, "October": 10,
+              "November": 11, "December": 12}
 
-    # Define the lower and upper bounds for abnormal data
-    lower_bound = lower_quantile - 1.5 * iqr
-    upper_bound = upper_quantile + 1.5 * iqr
+    season_lengths = {}
+    for season in seasons:
+        if season == "Year-round":
+            season_lengths[season] = 365
+        elif season == "Unknown":
+            season_lengths[season] = None
+        else:
+            try:
+                total_days = 0
+                for range_ in season.split(", "):
+                    if "-" not in range_:
+                        start_date = datetime(2022, months[range_], 1)
+                        if range_ == "February":
+                            days_in_month = 28
+                        else:
+                            days_in_month = (datetime(2022, months[range_] % 12 + 1, 1) - start_date).days
+                        total_days += days_in_month
+                    else:
+                        start, end = range_.split(" - ")
+                        start_date = datetime(2022, months[start], 1)
+                        end_date = datetime(2022, months[end], 1)
+                        if end_date < start_date:
+                            end_date = datetime(2023, months[end], 1)
+                        total_days += (end_date - start_date).days
+                season_lengths[season] = total_days
+            except Exception:
+                season_lengths[season] = None
+    season_lengths["December"] = 31
+    return season_lengths
 
-    # Find abnormal data points
-    abnormal_data = resorts[(resorts[column_name] < lower_bound) | (resorts[column_name] > upper_bound)]
 
-    return abnormal_data
+unique_seasons = resorts["Season"].unique()
+season_lengths = precompute_season_lengths(unique_seasons)
+resorts["Season Length"] = resorts["Season"].map(season_lengths)
 
-# Example usage
-abnormal_slopes = find_abnormalities(resorts, 'Total slopes')
-abnormal_price = find_abnormalities(resorts, 'Price')
 
-print("Abnormal Total Slopes:")
-print(abnormal_slopes[['Resort', 'Total slopes']])
+# Step 2: Optimize spatial matching with cKDTree
+def compute_average_snow(resorts, snow, threshold_km=50):
+    snow_coords = snow[["Latitude", "Longitude"]].to_numpy()
+    snow_values = snow["Snow"].to_numpy()
 
-print("\nAbnormal Prices:")
-print(abnormal_price[['Resort', 'Price']])
+    tree = cKDTree(snow_coords)
+
+    average_snow = []
+    for _, resort in resorts.iterrows():
+        resort_coord = [resort["Latitude"], resort["Longitude"]]
+        distances, indices = tree.query(resort_coord, k=len(snow_coords), distance_upper_bound=threshold_km / 111)
+
+        valid_indices = indices[distances < np.inf]
+        if valid_indices.size > 0:
+            avg_snow = np.mean(snow_values[valid_indices])
+        else:
+            avg_snow = None
+        average_snow.append(avg_snow)
+
+    return average_snow
+
+resorts["Average Snow"] = compute_average_snow(resorts, snow)
+
+std_abnormal(resorts, 'Average Snow')
+std_abnormal(resorts, 'Season Length')
+std_abnormal(resorts, 'Snow cannons')
+abnormal_2d(resorts, 'Average Snow', 'Season Length', threshold=np.sqrt(2))
+abnormal_2d(resorts, 'Average Snow', 'Snow cannons', threshold=np.sqrt(3))
+abnormal_2d(resorts, 'Season Length', 'Snow cannons', threshold=np.sqrt(2))
+
+abnormal_3d(resorts, 'Average Snow', 'Season Length', 'Snow cannons', threshold=1)

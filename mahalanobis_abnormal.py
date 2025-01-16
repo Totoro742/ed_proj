@@ -9,6 +9,7 @@ resorts = pd.read_csv('resorts.csv', encoding='latin1')
 threshold = np.sqrt(3)
 def abnormal_2d(resorts, col1, col2, threshold=threshold):
     # Delete records where Price is equal to 0
+    resorts = resorts.dropna(subset=[col1, col2])
     resorts = resorts[resorts[col2] != 0]
 
     # Extract the relevant columns
@@ -40,6 +41,7 @@ def abnormal_2d(resorts, col1, col2, threshold=threshold):
 
 def abnormal_3d(resorts, col1, col2, col3, threshold=threshold):
     # Delete records where Price is equal to 0
+    resorts = resorts.dropna(subset=[col1, col2, col3])
     resorts = resorts[resorts[col3] != 0]
 
     # Extract the relevant columns
