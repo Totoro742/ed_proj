@@ -54,7 +54,6 @@ def abnormal_3d(resorts, col1, col2, col3, threshold=threshold):
     # Calculate the Mahalanobis distance for each point
     data['Mahalanobis'] = data.apply(lambda row: mahalanobis(row, mean, np.linalg.inv(cov_matrix)), axis=1)
     data['Resort'] = resorts['Resort']
-    # Define a threshold for abnormal values (e.g., 3 standard deviations)
 
     # Identify abnormal data points
     abnormal_data = data[data['Mahalanobis'] > threshold]

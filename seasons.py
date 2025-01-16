@@ -51,8 +51,6 @@ unique_seasons = resorts["Season"].unique()
 season_lengths = precompute_season_lengths(unique_seasons)
 resorts["Season Length"] = resorts["Season"].map(season_lengths)
 
-
-# Step 2: Optimize spatial matching with cKDTree
 def compute_average_snow(resorts, snow, threshold_km=50):
     snow_coords = snow[["Latitude", "Longitude"]].to_numpy()
     snow_values = snow["Snow"].to_numpy()
@@ -82,9 +80,9 @@ hist_with_quantiles(resorts, 'Snow cannons')
 std_abnormal(resorts, 'Average Snow')
 std_abnormal(resorts, 'Season Length')
 std_abnormal(resorts, 'Snow cannons')
-abnormal_2d(resorts, 'Average Snow', 'Season Length', threshold=np.sqrt(2))
+abnormal_2d(resorts, 'Average Snow', 'Season Length', threshold=np.sqrt(3))
 abnormal_2d(resorts, 'Average Snow', 'Snow cannons', threshold=np.sqrt(3))
-abnormal_2d(resorts, 'Season Length', 'Snow cannons', threshold=np.sqrt(2))
+abnormal_2d(resorts, 'Season Length', 'Snow cannons', threshold=np.sqrt(3))
 
 abnormal_3d(resorts, 'Average Snow', 'Season Length', 'Snow cannons', threshold=1)
 
