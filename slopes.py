@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mahalanobis_abnormal import abnormal_2d
 from std_abnormal import std_abnormal
-
+from clustering import cluster_data
 # Load resorts.csv with specified encoding
 resorts = pd.read_csv('resorts.csv', encoding='latin1')
 
@@ -37,3 +37,5 @@ std_abnormal(resorts, 'Price')
 
 # Find abnormal data points using Mahalanobis distance method
 abnormal_2d(resorts, 'Total slopes', 'Price')
+
+cluster_data(resorts, ['Total slopes', 'Price'], method="dbscan", eps=0.3, min_samples=10)
