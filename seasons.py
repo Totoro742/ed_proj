@@ -4,6 +4,8 @@ from datetime import datetime
 from scipy.spatial import cKDTree
 from std_abnormal import std_abnormal
 from mahalanobis_abnormal import abnormal_2d, abnormal_3d
+from clustering import cluster_data
+from util import hist_with_quantiles
 
 resorts = pd.read_csv("resorts.csv", encoding='latin1')
 snow = pd.read_csv("snow.csv", encoding='latin1')
@@ -73,6 +75,10 @@ def compute_average_snow(resorts, snow, threshold_km=50):
 
 resorts["Average Snow"] = compute_average_snow(resorts, snow)
 
+hist_with_quantiles(resorts, 'Average Snow')
+hist_with_quantiles(resorts, 'Season Length')
+hist_with_quantiles(resorts, 'Snow cannons')
+
 std_abnormal(resorts, 'Average Snow')
 std_abnormal(resorts, 'Season Length')
 std_abnormal(resorts, 'Snow cannons')
@@ -81,3 +87,5 @@ abnormal_2d(resorts, 'Average Snow', 'Snow cannons', threshold=np.sqrt(3))
 abnormal_2d(resorts, 'Season Length', 'Snow cannons', threshold=np.sqrt(2))
 
 abnormal_3d(resorts, 'Average Snow', 'Season Length', 'Snow cannons', threshold=1)
+
+cluster_data(resorts, ['Average Snow', 'Season Length', 'Snow cannons'], n_clusters=4, method='kmeans')
