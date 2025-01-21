@@ -49,3 +49,21 @@ Wysokie wyniki nietypowości w Europie i Oceanii mogą wynikać z większego zr�
 W Ameryce Południowej niskie wartości nietypowości w 3D mogą sugerować mniej zróżnicowane warunki w badanych kurortach.
 
 Występuje niska zależność między nietypowościami w 1D i 3D co sugeruje, że na podstawie jednego parametru ciężko przewidzieć anomalie w 3D
+
+## Klasteryzacja
+
+|   Cluster | ('Average Snow', 'mean') | ('Average Snow', 'median') |   ('Average Snow', 'min') |   ('Average Snow', 'max') |   ('Average Snow', 'std') |   ('Average Snow', 'count') |   ('Season Length', 'mean') |   ('Season Length', 'median') |   ('Season Length', 'min') |   ('Season Length', 'max') |   ('Season Length', 'std') |   ('Season Length', 'count') |   ('Snow cannons', 'mean') |   ('Snow cannons', 'median') |   ('Snow cannons', 'min') |   ('Snow cannons', 'max') |   ('Snow cannons', 'std') |   ('Snow cannons', 'count') |
+|----------:|-------------------------:|---------------------------:|--------------------------:|--------------------------:|--------------------------:|----------------------------:|----------------------------:|------------------------------:|---------------------------:|---------------------------:|---------------------------:|-----------------------------:|---------------------------:|-----------------------------:|--------------------------:|--------------------------:|--------------------------:|----------------------------:|
+|         0 |                    65.81 |                      66.04 |                     25.87 |                     89.67 |                     13.79 |                          54 |                      217.52 |                           182 |                        181 |                        365 |                      54.91 |                           54 |                     132.17 |                          9   |                         0 |                      1060 |                    242.62 |                          54 |
+|         1 |                    61.06 |                      60.60 |                     43.08 |                     92.31 |                      8.81 |                         325 |                      124.06 |                           121 |                         30 |                        151 |                      23.54 |                          325 |                     100.82 |                         10   |                         0 |                       747 |                    170.04 |                         325 |
+|         2 |                    23.90 |                      26.06 |                      0.79 |                     42.68 |                     13.93 |                          62 |                      121.47 |                           121 |                         30 |                        181 |                      30.15 |                           62 |                     134.03 |                         60.5 |                         0 |                       793 |                    182.26 |                          62 |
+|         3 |                    59.21 |                      61.32 |                     34.16 |                     74.28 |                      8.37 |                          30 |                      148.03 |                           151 |                        121 |                        182 |                      25.39 |                           30 |                    1358.87 |                       1074   |                       750 |                      2383 |                    577.96 |                          30 |
+
+
+Klaster 3 to największe ośrodki z najdłuższymi trasami i bardzo dużą liczbą armatek śnieżnych, co sugeruje wysoką komercjalizację i nowoczesność.
+
+Klaster 0 oferuje długi sezon z umiarkowaną długością tras, co czyni go dobrym wyborem dla średniej wielkości ośrodków.
+
+Klaster 1 to najliczniejszy zbiór ośrodków z przeciętnymi trasami i średnią liczbą armatek, raczej dla ośrodków o umiarkowanych warunkach śniegowych.
+
+Klaster 2 to najmniejsze ośrodki z krótkimi trasami i najmniejszą ilością śniegu – są silnie uzależnione od sztucznego naśnieżania.
