@@ -38,6 +38,7 @@ def abnormal_2d(resorts, col1, col2, threshold=threshold):
     plt.title(f'Abnormal Data Points in 2D Plane of {col1} and {col2}')
     plt.legend()
     plt.show()
+    return abnormal_data
 
 def abnormal_3d(resorts, col1, col2, col3, threshold=threshold):
     # Delete records where Price is equal to 0
@@ -72,6 +73,7 @@ def abnormal_3d(resorts, col1, col2, col3, threshold=threshold):
     plt.title(f'Abnormal Data Points in 3D Space of {col1}, {col2}, and {col3}')
     plt.legend()
     plt.show()
+    return abnormal_data
 # Example usage
 if __name__ == '__main__':
     abnormal_2d(resorts, 'Total slopes', 'Price')

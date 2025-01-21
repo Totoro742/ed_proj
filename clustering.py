@@ -70,4 +70,6 @@ def cluster_data(resorts, cols, n_clusters=3, method="kmeans", eps=0.5, min_samp
         plt.legend()
         plt.show()
 
+
+
     return resorts

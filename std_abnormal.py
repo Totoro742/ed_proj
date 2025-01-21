@@ -18,6 +18,7 @@ def std_abnormal(resorts, col_name):
 
     print("Abnormal Data:")
     print(abnormal_data[['Resort', col_name]])
+    return abnormal_data
 
 def quant_abnormal(resorts, column_name):
     lower_quantile = resorts[column_name].quantile(0.25)
@@ -35,6 +36,7 @@ def quant_abnormal(resorts, column_name):
 
     print("Abnormal Data:")
     print(abnormal_data[['Resort', column_name]])
+    return abnormal_data
 
 if __name__ == '__main__':
     std_abnormal(resorts, 'Total slopes')
