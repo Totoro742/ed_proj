@@ -4,15 +4,12 @@ Liczba wartości abnormalnych w długości sezonu: 9
 
 Liczba wartości abnormalnych w ilości armatek: 10
 
-Liczba wartości abnormalnych w poryciu śniegu i długości sezonu: 85
+Liczba wartości abnormalnych w poryciu śniegu, długości sezonu i ilości armatek: 23
 
-Liczba wartości abnormalnych w poryciu śniegu i ilości armatek: 47
+Tylko 2 rekordy, które sa nietypowe w 1d, są typowe w 3d.
 
-Liczba wartości abnormalnych w długości sezonu i ilości armatek: 42
+400 rekordów jest całkowicie typowe.
 
-Liczba wartości abnormalnych w poryciu śniegu, długości sezonu i ilości armatek: 144
-
-Dla wszystkich nietypowych wartości długości sezonu w 1d występują nietypowe wartości w 2d (śnieg - długość sezonu)
 
 |Resort                   |Latitude   |Longitude  |Country    |Continent|Season          |
 |-------------------------|-----------|-----------|-----------|------|----------------|
@@ -26,13 +23,6 @@ Dla wszystkich nietypowych wartości długości sezonu w 1d występują nietypow
 |Zermatt - Matterhorn     |45.96300885|7.715412186|Switzerland|Europe|Year-round      |
 (wszędzie też summer skiing)
 
-Tylko 3 rekordy, które sa nietypowe w 1d, są typowe w 3d.
-
-36 rekordów nietypowych w 2d (tylko opady śniegu i długość sezonu) jest typowych w 3d.
-
-69 rekordów typowych w 1d i 2d są nietypowe w 3d. Może to wynikać z faktu, że w 3d mamy więcej danych i jesteśmy w stanie wykryć więcej nietypowych wartości.
-
-292 rekordy, są całkowicie typowe.
 
 Najbardziej nietypowe kraje:
 
@@ -68,33 +58,35 @@ Klaster 1 to najliczniejszy zbiór ośrodków z przeciętnymi trasami i średni�
 
 Klaster 2 to najmniejsze ośrodki z krótkimi trasami i najmniejszą ilością śniegu – są silnie uzależnione od sztucznego naśnieżania.
 
-## Podział na 4 klastry
+# Analiza klastrów w podziale na różne konfiguracje
 
-| Cluster | Average Snow (mean) | Season Length (mean) | Snow Cannons (mean) | Opis |
-|---------|--------------------|---------------------|--------------------|------|
-| **0**   | 62.31                | 114.95               | 108.66              | Średnie warunki śniegowe, umiarkowany sezon, średnia liczba armatek. Może obejmować przeciętne europejskie kurorty o stabilnych warunkach. |
-| **1**   | 22.32                | 128.94               | 141.48              | Niskie opady śniegu, stosunkowo długi sezon. Prawdopodobnie ośrodki w regionach nisko położonych, z większą zależnością od armatek śnieżnych. |
-| **2**   | 66.40                | 164.03               | 1325.27              | Bardzo dobre warunki śniegowe, długi sezon, duża liczba armatek. Prawdopodobnie duże, zaawansowane ośrodki w Alpach lub innych wysokogórskich regionach. |
-| **3**   | 72.57                | 174.94               | 75.41                | Najwyższe opady śniegu, długi sezon, ale niska liczba armatek. Może to być grupa ośrodków naturalnie śnieżnych, z mniejszą potrzebą sztucznego naśnieżania. |
+## Podział 1
 
-## Podział na 5 klastrów
+| Cluster | Liczność | Average Snow (mean ± std) | Season Length (mean ± std) | Snow Cannons (mean ± std) | Opis |
+|---------|---------|--------------------------|----------------------------|--------------------------|------|
+| 0       | 52      | 20.30 ± 12.45              | 129.73 ± 30.12               | 125.67 ± 191.23            | Najmniejsza średnia opadów śniegu |
+| 1       | 259     | 58.24 ± 8.42               | 115.20 ± 22.30               | 100.65 ± 156.84            | Średnie wartości |
+| 2       | 36      | 59.08 ± 7.82               | 160.44 ± 58.14               | 1277.08 ± 560.84           | Najwięcej armat śnieżnych |
+| 3       | 124     | 67.65 ± 10.57              | 174.81 ± 42.37               | 83.87 ± 148.33             | Najwyższa średnia opadów śniegu |
 
-| Cluster | Average Snow (mean) | Season Length (mean) | Snow Cannons (mean) | Opis |
-|---------|--------------------|---------------------|--------------------|------|
-| **0**   | 64.84                | 137.15               | 704.67              | Duże ośrodki z dobrymi warunkami śniegowymi i wysoką liczbą armatek. Najprawdopodobniej popularne europejskie ośrodki. |
-| **1**   | 16.52                | 130.10               | 137.14              | Bardzo niskie opady śniegu, długa długość sezonu, mało armatek. Może to wskazywać na małe, mniej zaawansowane technicznie ośrodki. |
-| **2**   | 65.41                | 196.67               | 1918.17              | Ośrodki o bardzo długim sezonie, zaawansowane technologicznie, ze znaczą liczbą armatek. Prawdopodobnie są to duże resorty górskie. |
-| **3**   | 73.06                | 176.14               | 49.67                | Wysokie opady śniegu, ale niska liczba armatek. Najprawdopodobniej naturalnie śnieżne lokalizacje. |
-| **4**   | 60.84                | 114.41               | 63.99                | Średnie warunki, krótszy sezon, niska liczba armatek – sugeruje bardziej budżetowe lub lokalne ośrodki. |
+## Podział 2
 
-## Podział na 6 klastrów
+| Cluster | Liczność | Average Snow (mean ± std) | Season Length (mean ± std) | Snow Cannons (mean ± std) | Opis |
+|---------|---------|--------------------------|----------------------------|--------------------------|------|
+| 0       | 53      | 20.62 ± 12.55              | 131.28 ± 31.90               | 124.62 ± 189.54            | Najmniejsza średnia opadów śniegu |
+| 1       | 240     | 57.88 ± 8.05               | 113.25 ± 21.63               | 101.56 ± 153.38            | Średnie wartości |
+| 2       | 34      | 59.92 ± 8.57               | 144.85 ± 25.39               | 1285.97 ± 578.47           | Duża liczba armat śnieżnych |
+| 3       | 130     | 67.16 ± 10.78              | 160.35 ± 20.60               | 77.41 ± 148.43             | Wysokie opady śniegu |
+| 4       | 14      | 64.45 ± 7.86               | 294.93 ± 53.02               | 300.93 ± 393.27            | Najdłuższy sezon |
 
-| Cluster | Average Snow (mean) | Season Length (mean) | Snow Cannons (mean) | Opis |
-|---------|--------------------|---------------------|--------------------|------|
-| **0**   | 65.03                | 135.06               | 742.17              | Ośrodki z dobrymi warunkami śniegowymi, dużą liczbą armatek – prawdopodobnie popularne i nowoczesne ośrodki narciarskie. |
-| **1**   | 16.93                | 131.74               | 135.80               | Małe ośrodki z niskimi opadami, stosunkowo długim sezonem i niewielką liczbą armatek. Może to być grupa lokalnych ośrodków o ograniczonej infrastrukturze. |
-| **2**   | 63.44                | 163.00               | 2089.80              | Ekstremalnie zaawansowane ośrodki z dużą liczbą armatek, prawdopodobnie duże centra turystyczne. |
-| **3**   | 73.89                | 155.34               | 50.14                | Bardzo wysokie opady śniegu i długi sezon, ale niewiele armatek – najpewniej wysokogórskie, naturalnie śnieżne ośrodki. |
-| **4**   | 58.71                | 112.98               | 71.86                | Przeciętne ośrodki z krótszym sezonem i umiarkowanym śniegiem. |
-| **5**   | 71.70                | 294.93               | 300.93               | Ośrodki z ekstremalnie długim sezonem, ale mniejszą liczbą armatek – może to być unikalna grupa wysokogórskich ośrodków całorocznych. |
+## Podział 3
+
+| Cluster | Liczność | Average Snow (mean ± std) | Season Length (mean ± std) | Snow Cannons (mean ± std) | Opis |
+|---------|---------|--------------------------|----------------------------|--------------------------|------|
+| 0       | 53      | 20.62 ± 12.55              | 131.28 ± 31.90               | 124.62 ± 189.54            | Najmniejsza średnia opadów śniegu |
+| 1       | 232     | 58.11 ± 8.21               | 112.85 ± 21.81               | 80.33 ± 118.74             | Niska liczba armat śnieżnych |
+| 2       | 43      | 58.96 ± 8.51               | 135.67 ± 19.00               | 883.02 ± 330.97            | Duża liczba armat śnieżnych |
+| 3       | 123     | 67.28 ± 10.96              | 161.37 ± 20.47               | 58.99 ± 114.69             | Wysokie opady śniegu |
+| 4       | 14      | 64.45 ± 7.86               | 294.93 ± 53.02               | 300.93 ± 393.27            | Najdłuższy sezon |
+| 5       | 6       | 61.10 ± 1.16               | 181.00 ± 0.00                | 2383.00 ± 0.00             | Stałe wartości dla sezonu i armat śnieżnych |
 

@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore")
 # Load resorts.csv with specified encoding
 resorts = pd.read_csv('resorts.csv', encoding='latin1')
 threshold = np.sqrt(3)
-def abnormal_2d(resorts, col1, col2, threshold=threshold):
+def abnormal_2d(resorts, col1, col2, threshold=threshold, plot=False):
     # Delete records where Price is equal to 0
     resorts = resorts.dropna(subset=[col1, col2])
     resorts = resorts[resorts[col2] != 0]
@@ -29,18 +29,18 @@ def abnormal_2d(resorts, col1, col2, threshold=threshold):
 
     print("Abnormal Data Points:")
     print(abnormal_data)
-
+    if plot:
     # Plot the data points and highlight the abnormal ones
-    plt.scatter(data[col1], data[col2], label='Normal Data')
-    plt.scatter(abnormal_data[col1], abnormal_data[col2], color='r', label='Abnormal Data')
-    plt.xlabel(f'{col1}')
-    plt.ylabel(f'{col2}')
-    plt.title(f'Abnormal Data Points in 2D Plane of {col1} and {col2}')
-    plt.legend()
-    plt.show()
+        plt.scatter(data[col1], data[col2], label='Normal Data')
+        plt.scatter(abnormal_data[col1], abnormal_data[col2], color='r', label='Abnormal Data')
+        plt.xlabel(f'{col1}')
+        plt.ylabel(f'{col2}')
+        plt.title(f'Abnormal Data Points in 2D Plane of {col1} and {col2}')
+        plt.legend()
+        plt.show()
     return abnormal_data
 
-def abnormal_3d(resorts, col1, col2, col3, threshold=threshold):
+def abnormal_3d(resorts, col1, col2, col3, threshold=threshold, plot=True):
     # Delete records where Price is equal to 0
     resorts = resorts.dropna(subset=[col1, col2, col3])
     resorts = resorts[resorts[col3] != 0]
@@ -61,18 +61,18 @@ def abnormal_3d(resorts, col1, col2, col3, threshold=threshold):
 
     print("Abnormal Data Points:")
     print(abnormal_data)
-
+    if plot:
     # Plot the data points and highlight the abnormal ones
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(data[col1], data[col2], data[col3], label='Normal Data', color='b')
-    ax.scatter(abnormal_data[col1], abnormal_data[col2], abnormal_data[col3], color='r', label='Abnormal Data')
-    ax.set_xlabel(f'{col1}')
-    ax.set_ylabel(f'{col2}')
-    ax.set_zlabel(f'{col3}')
-    plt.title(f'Abnormal Data Points in 3D Space of {col1}, {col2}, and {col3}')
-    plt.legend()
-    plt.show()
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.scatter(data[col1], data[col2], data[col3], label='Normal Data', color='b')
+        ax.scatter(abnormal_data[col1], abnormal_data[col2], abnormal_data[col3], color='r', label='Abnormal Data')
+        ax.set_xlabel(f'{col1}')
+        ax.set_ylabel(f'{col2}')
+        ax.set_zlabel(f'{col3}')
+        plt.title(f'Abnormal Data Points in 3D Space of {col1}, {col2}, and {col3}')
+        plt.legend()
+        plt.show()
     return abnormal_data
 # Example usage
 if __name__ == '__main__':

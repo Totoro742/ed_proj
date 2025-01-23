@@ -28,9 +28,8 @@ print(f"Liczba wartości abnormalnych w poryciu śniegu, długości sezonu i ilo
 print(abnormal_snow[['Resort', 'Average Snow']])
 print(abnormal_length[['Resort', 'Season Length']])
 print(abnormal_cannons[['Resort', 'Snow cannons']])
-print(abnormal_2d_snow_length[['Resort', 'Average Snow', 'Season Length']])
-print(abnormal_2d_snow_cannons[['Resort', 'Average Snow', 'Snow cannons']])
-print(abnormal_2d_length_cannons[['Resort', 'Season Length', 'Snow cannons']])
 print(abnormal_3d[['Resort', 'Average Snow', 'Season Length', 'Snow cannons']])
 
 print(data[(data['Abnormal_1D_Average_Snow'] == False) & (data['Abnormal_1D_Season_Length'] == False) & (data['Abnormal_1D_Snow_Cannons'] == False) & (data['Abnormal_2D_Average_Snow_Season_Length'] == False) & (data['Abnormal_2D_Average_Snow_Snow_Cannons'] == False) & (data['Abnormal_2D_Season_Length_Snow_Cannons'] == False) & (data['Abnormal_3D'] == True)])
+
+

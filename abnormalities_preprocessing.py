@@ -34,7 +34,7 @@ if abnormal_1d_snow_cannons is not None:
     resorts.loc[abnormal_1d_snow_cannons.index, "Abnormal_1D_Snow_Cannons"] = True
 
 # Identify 3D abnormal data
-abnormal_3d_data = abnormal_3d(resorts, 'Average Snow', 'Season Length', 'Snow cannons', threshold=3)
+abnormal_3d_data = abnormal_3d(resorts, 'Average Snow', 'Season Length', 'Snow cannons', threshold=3, plot=False)
 
 if abnormal_3d_data is not None:
     resorts.loc[abnormal_3d_data.index, "Abnormal_3D"] = True
@@ -45,11 +45,3 @@ resorts.dropna(inplace=True)
 
 # Save to CSV
 resorts.to_csv("abnormal_resorts.csv", index=False)
-
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Country']])
-
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']], model_type='knn')
-
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']], model_type='random_forest')
-
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']])

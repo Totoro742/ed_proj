@@ -3,6 +3,7 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import pandas as pd
 from clustering import cluster_data
+from kneed import KneeLocator
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -36,24 +37,22 @@ plt.xticks(k_values)
 plt.grid(True)
 plt.show()
 
-#Find optimal number of clusters
-from kneed import KneeLocator
 
 kl = KneeLocator(k_values, wcss, curve='convex', direction='decreasing')
 optimal_k = kl.elbow
 print(f"Optimal number of clusters: {optimal_k}")
 
 
-clustered_resorts = cluster_data(resorts, ["Average Snow", "Season Length", "Snow cannons"], n_clusters=4, method="kmeans")
+for k in [4,5,6]:
+    clustered_resorts = cluster_data(resorts, ["Average Snow", "Season Length", "Snow cannons"], n_clusters=k, method="kmeans")
 
-# Save the clustered data to a CSV file
-clustered_resorts.to_csv("clustered_resorts.csv", index=False)
+    # Save the clustered data to a CSV file
+    clustered_resorts.to_csv(f"clustered_resorts_{k}.csv", index=False)
 
+    # Wybór istotnych kolumn
+    selected_columns = ['Average Snow', 'Season Length', 'Snow cannons', 'Cluster']
+    clustered_resorts = clustered_resorts[selected_columns]
 
-# Wybór istotnych kolumn
-selected_columns = ['Average Snow', 'Season Length', 'Snow cannons', 'Cluster']
-clustered_resorts = clustered_resorts[selected_columns]
-
-# Statystyki opisowe dla każdego klastra
-cluster_analysis = clustered_resorts.groupby('Cluster').agg(['mean', 'median', 'min', 'max', 'std', 'count']).round(2)
-print(cluster_analysis.to_string())
+    # Statystyki opisowe dla każdego klastra
+    cluster_analysis = clustered_resorts.groupby('Cluster').agg(['mean', 'median', 'min', 'max', 'std', 'count']).round(2)
+    print(cluster_analysis.to_string())
