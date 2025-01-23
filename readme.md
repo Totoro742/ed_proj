@@ -67,3 +67,34 @@ Klaster 0 oferuje długi sezon z umiarkowaną długością tras, co czyni go dob
 Klaster 1 to najliczniejszy zbiór ośrodków z przeciętnymi trasami i średnią liczbą armatek, raczej dla ośrodków o umiarkowanych warunkach śniegowych.
 
 Klaster 2 to najmniejsze ośrodki z krótkimi trasami i najmniejszą ilością śniegu – są silnie uzależnione od sztucznego naśnieżania.
+
+## Podział na 4 klastry
+
+| Cluster | Average Snow (mean) | Season Length (mean) | Snow Cannons (mean) | Opis |
+|---------|--------------------|---------------------|--------------------|------|
+| **0**   | 62.31                | 114.95               | 108.66              | Średnie warunki śniegowe, umiarkowany sezon, średnia liczba armatek. Może obejmować przeciętne europejskie kurorty o stabilnych warunkach. |
+| **1**   | 22.32                | 128.94               | 141.48              | Niskie opady śniegu, stosunkowo długi sezon. Prawdopodobnie ośrodki w regionach nisko położonych, z większą zależnością od armatek śnieżnych. |
+| **2**   | 66.40                | 164.03               | 1325.27              | Bardzo dobre warunki śniegowe, długi sezon, duża liczba armatek. Prawdopodobnie duże, zaawansowane ośrodki w Alpach lub innych wysokogórskich regionach. |
+| **3**   | 72.57                | 174.94               | 75.41                | Najwyższe opady śniegu, długi sezon, ale niska liczba armatek. Może to być grupa ośrodków naturalnie śnieżnych, z mniejszą potrzebą sztucznego naśnieżania. |
+
+## Podział na 5 klastrów
+
+| Cluster | Average Snow (mean) | Season Length (mean) | Snow Cannons (mean) | Opis |
+|---------|--------------------|---------------------|--------------------|------|
+| **0**   | 64.84                | 137.15               | 704.67              | Duże ośrodki z dobrymi warunkami śniegowymi i wysoką liczbą armatek. Najprawdopodobniej popularne europejskie ośrodki. |
+| **1**   | 16.52                | 130.10               | 137.14              | Bardzo niskie opady śniegu, długa długość sezonu, mało armatek. Może to wskazywać na małe, mniej zaawansowane technicznie ośrodki. |
+| **2**   | 65.41                | 196.67               | 1918.17              | Ośrodki o bardzo długim sezonie, zaawansowane technologicznie, ze znaczą liczbą armatek. Prawdopodobnie są to duże resorty górskie. |
+| **3**   | 73.06                | 176.14               | 49.67                | Wysokie opady śniegu, ale niska liczba armatek. Najprawdopodobniej naturalnie śnieżne lokalizacje. |
+| **4**   | 60.84                | 114.41               | 63.99                | Średnie warunki, krótszy sezon, niska liczba armatek – sugeruje bardziej budżetowe lub lokalne ośrodki. |
+
+## Podział na 6 klastrów
+
+| Cluster | Average Snow (mean) | Season Length (mean) | Snow Cannons (mean) | Opis |
+|---------|--------------------|---------------------|--------------------|------|
+| **0**   | 65.03                | 135.06               | 742.17              | Ośrodki z dobrymi warunkami śniegowymi, dużą liczbą armatek – prawdopodobnie popularne i nowoczesne ośrodki narciarskie. |
+| **1**   | 16.93                | 131.74               | 135.80               | Małe ośrodki z niskimi opadami, stosunkowo długim sezonem i niewielką liczbą armatek. Może to być grupa lokalnych ośrodków o ograniczonej infrastrukturze. |
+| **2**   | 63.44                | 163.00               | 2089.80              | Ekstremalnie zaawansowane ośrodki z dużą liczbą armatek, prawdopodobnie duże centra turystyczne. |
+| **3**   | 73.89                | 155.34               | 50.14                | Bardzo wysokie opady śniegu i długi sezon, ale niewiele armatek – najpewniej wysokogórskie, naturalnie śnieżne ośrodki. |
+| **4**   | 58.71                | 112.98               | 71.86                | Przeciętne ośrodki z krótszym sezonem i umiarkowanym śniegiem. |
+| **5**   | 71.70                | 294.93               | 300.93               | Ośrodki z ekstremalnie długim sezonem, ale mniejszą liczbą armatek – może to być unikalna grupa wysokogórskich ośrodków całorocznych. |
+
