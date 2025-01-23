@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from joblib.parallel import method
 
-from classification import classify
+from classification import classify #, classify_density
 from seasons import precompute_season_lengths, compute_average_snow
 from std_abnormal import std_abnormal
 from mahalanobis_abnormal import abnormal_2d, abnormal_3d
@@ -46,10 +46,62 @@ resorts.dropna(inplace=True)
 # Save to CSV
 resorts.to_csv("abnormal_resorts.csv", index=False)
 
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Country']])
+# classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Country']])
+#
+# classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']], model_type='knn')
+#
+# classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']], model_type='random_forest')
+#
+# classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']])
 
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']], model_type='knn')
 
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']], model_type='random_forest')
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Country']] , target_name='country',model_type='knn', )
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Country']] , target_name='country',model_type='decision_tree')
+# classify_density(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Country']])
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Country']] , target_name='country', model_type='random_forest')
 
-classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']])
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']] , target_name='continent',model_type='knn', )
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']] , target_name='continent',model_type='decision_tree')
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Continent']] , target_name='continent', model_type='random_forest')
+
+resorts['Average Height'] = (resorts['Highest point'] + resorts['Lowest point']) / 2
+def classify_average_height(avg_height):
+    if avg_height < 1000:  # Example threshold, adjust as needed
+        return "Low"
+    elif 1000 <= avg_height <= 2000:
+        return "Medium"
+    else:
+        return "High"
+
+resorts['Height Class'] = resorts['Average Height'].apply(classify_average_height)
+
+
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Height Class']] , target_name='height class',model_type='knn', )
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Height Class']] , target_name='height class',model_type='decision_tree')
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Height Class']] , target_name='height class', model_type='random_forest')
+
+
+resorts['Average Height'] = resorts['Average Height'].sort_values(ascending=True)
+
+lower_quantile = resorts['Average Height'].quantile(0.33)
+upper_quantile = resorts['Average Height'].quantile(0.66)
+def classify_average_height_quantiles(avg_height):
+    if avg_height <= lower_quantile:  # Below or equal to the lower quantile
+        return "Low"
+    elif lower_quantile < avg_height <= upper_quantile:  # Between lower and upper quantiles
+        return "Medium"
+    else:  # Above the upper quantile
+        return "High"
+
+
+# Step 4: Apply the classification
+resorts['Height Class2'] = resorts['Average Height'].apply(classify_average_height_quantiles)
+
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Height Class2']] , target_name='height class k',model_type='knn', )
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Height Class2']] , target_name='height class k',model_type='decision_tree')
+classify(resorts[['Average Snow', 'Season Length', 'Snow cannons']], resorts[['Height Class2']] , target_name='height class k', model_type='random_forest')
+
+
+
+
+
