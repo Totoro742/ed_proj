@@ -65,7 +65,7 @@ def abnormal_3d(resorts, col1, col2, col3, threshold=threshold):
     # Plot the data points and highlight the abnormal ones
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(data[col1], data[col2], data[col3], label='Normal Data')
+    ax.scatter(data[col1], data[col2], data[col3], label='Normal Data', color='b')
     ax.scatter(abnormal_data[col1], abnormal_data[col2], abnormal_data[col3], color='r', label='Abnormal Data')
     ax.set_xlabel(f'{col1}')
     ax.set_ylabel(f'{col2}')
