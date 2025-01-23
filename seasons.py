@@ -51,12 +51,12 @@ unique_seasons = resorts["Season"].unique()
 season_lengths = precompute_season_lengths(unique_seasons)
 resorts["Season Length"] = resorts["Season"].map(season_lengths)
 
-def compute_average_snow(resorts, snow, threshold_km=50):
+def compute_average_snow(resorts, snow, threshold_km=20):
     snow_coords = snow[["Latitude", "Longitude"]].to_numpy()
     snow_values = snow["Snow"].to_numpy()
 
     tree = cKDTree(snow_coords)
-
+    max_distance = threshold_km / 111
     average_snow = []
     for _, resort in resorts.iterrows():
         resort_coord = [resort["Latitude"], resort["Longitude"]]
@@ -67,6 +67,7 @@ def compute_average_snow(resorts, snow, threshold_km=50):
             avg_snow = np.mean(snow_values[valid_indices])
         else:
             avg_snow = None
+
         average_snow.append(avg_snow)
 
     return average_snow
@@ -87,3 +88,7 @@ abnormal_2d(resorts, 'Season Length', 'Snow cannons', threshold=np.sqrt(3))
 abnormal_3d(resorts, 'Average Snow', 'Season Length', 'Snow cannons', threshold=1)
 
 cluster_data(resorts, ['Average Snow', 'Season Length', 'Snow cannons'], n_clusters=4, method='kmeans')
+
+cluster_data(resorts, ['Average Snow', 'Season Length', 'Snow cannons'], n_clusters=5, method='kmeans')
+
+cluster_data(resorts, ['Average Snow', 'Season Length', 'Snow cannons'], n_clusters=6, method='kmeans')
