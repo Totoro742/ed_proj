@@ -2,13 +2,13 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import pandas as pd
-from clustering import cluster_data
+from functions.clustering import cluster_data
 from kneed import KneeLocator
 import warnings
 
 warnings.filterwarnings("ignore")
 
-resorts = pd.read_csv('abnormal_resorts.csv', encoding='latin1')
+resorts = pd.read_csv('data/abnormal_resorts.csv', encoding='latin1')
 
 # Select relevant columns for clustering
 features = resorts[["Average Snow", "Season Length", "Snow cannons"]]

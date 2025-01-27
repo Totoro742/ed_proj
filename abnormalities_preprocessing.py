@@ -1,15 +1,13 @@
 import pandas as pd
-import numpy as np
-from joblib.parallel import method
 
-from classification import classify
+from functions.classification import classify
 from seasons import precompute_season_lengths, compute_average_snow
-from std_abnormal import std_abnormal
-from mahalanobis_abnormal import abnormal_2d, abnormal_3d
+from functions.std_abnormal import std_abnormal
+from data.mahalanobis_abnormal import abnormal_3d
 
 # Load the data
-resorts = pd.read_csv("resorts.csv", encoding='latin1')
-snow = pd.read_csv("snow.csv", encoding='latin1')
+resorts = pd.read_csv("data/resorts.csv", encoding='latin1')
+snow = pd.read_csv("data/snow.csv", encoding='latin1')
 
 # Compute additional columns
 resorts["Season Length"] = resorts["Season"].map(precompute_season_lengths(resorts["Season"].unique()))

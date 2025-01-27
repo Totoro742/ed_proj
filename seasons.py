@@ -2,13 +2,13 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 from scipy.spatial import cKDTree
-from std_abnormal import std_abnormal
-from mahalanobis_abnormal import abnormal_2d, abnormal_3d
-from clustering import cluster_data
-from util import hist_with_quantiles
+from functions.std_abnormal import std_abnormal
+from data.mahalanobis_abnormal import abnormal_3d
+from functions.clustering import cluster_data
+from functions.util import hist_with_quantiles
 
-resorts = pd.read_csv("resorts.csv", encoding='latin1')
-snow = pd.read_csv("snow.csv", encoding='latin1')
+resorts = pd.read_csv("data/resorts.csv", encoding='latin1')
+snow = pd.read_csv("data/snow.csv", encoding='latin1')
 
 
 def precompute_season_lengths(seasons):

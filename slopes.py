@@ -1,11 +1,10 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from mahalanobis_abnormal import abnormal_2d
-from std_abnormal import std_abnormal
-from clustering import cluster_data
-from util import hist_with_quantiles
+from data.mahalanobis_abnormal import abnormal_2d
+from functions.std_abnormal import std_abnormal
+from functions.clustering import cluster_data
+from functions.util import hist_with_quantiles
 # Load resorts.csv with specified encoding
-resorts = pd.read_csv('resorts.csv', encoding='latin1')
+resorts = pd.read_csv('data/resorts.csv', encoding='latin1')
 
 # Delete records where Price is equal to 0
 resorts = resorts[resorts['Price'] != 0]

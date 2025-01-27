@@ -1,6 +1,6 @@
 import pandas as pd
 
-file_path = 'abnormal_resorts.csv'
+file_path = 'data/abnormal_resorts.csv'
 data = pd.read_csv(file_path)
 
 abnormal_snow = data[(data['Abnormal_1D_Average_Snow'] == True)]
