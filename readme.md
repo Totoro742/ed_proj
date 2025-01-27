@@ -90,3 +90,13 @@ Klaster 2 to najmniejsze ośrodki z krótkimi trasami i najmniejszą ilością �
 | 4       | 14      | 64.45 ± 7.86               | 294.93 ± 53.02               | 300.93 ± 393.27            | Najdłuższy sezon |
 | 5       | 6       | 61.10 ± 1.16               | 181.00 ± 0.00                | 2383.00 ± 0.00             | Stałe wartości dla sezonu i armat śnieżnych |
 
+
+# Klasyfikacja
+4:6
+params: 7 Dokładność modelu knn dla hc1:0.49
+params: 4 Dokładność modelu knn dla hc2:0.44
+params: 6 Dokładność modelu knn dla country:0.30
+params: 3 Dokładność modelu knn dla continent:0.77
+
+
+
