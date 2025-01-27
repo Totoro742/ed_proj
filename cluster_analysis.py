@@ -43,11 +43,11 @@ optimal_k = kl.elbow
 print(f"Optimal number of clusters: {optimal_k}")
 
 
-for k in [4,5,6]:
+for k in [4,5,6,7,8]:
     clustered_resorts = cluster_data(resorts, ["Average Snow", "Season Length", "Snow cannons"], n_clusters=k, method="kmeans")
 
     # Save the clustered data to a CSV file
-    clustered_resorts.to_csv(f"clustered_resorts_{k}.csv", index=False)
+    clustered_resorts.to_csv(f"data/clustered_resorts_{k}.csv", index=False)
 
     # Wybór istotnych kolumn
     selected_columns = ['Average Snow', 'Season Length', 'Snow cannons', 'Cluster']

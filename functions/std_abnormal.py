@@ -1,9 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load resorts.csv with specified encoding
-resorts = pd.read_csv('../data/resorts.csv', encoding='latin1')
-
 # Calculate mean and standard deviation for 'Total slopes' and 'Price'
 def std_abnormal(resorts, col_name):
     mean = resorts[col_name].mean()
@@ -39,5 +36,6 @@ def quant_abnormal(resorts, column_name):
     return abnormal_data
 
 if __name__ == '__main__':
+    resorts = pd.read_csv('../data/resorts.csv', encoding='latin1')
     std_abnormal(resorts, 'Total slopes')
     std_abnormal(resorts, 'Price')
