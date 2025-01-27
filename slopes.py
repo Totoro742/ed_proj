@@ -1,5 +1,5 @@
 import pandas as pd
-from data.mahalanobis_abnormal import abnormal_2d
+from functions.mahalanobis_abnormal import abnormal_2d
 from functions.std_abnormal import std_abnormal
 from functions.clustering import cluster_data
 from functions.util import hist_with_quantiles

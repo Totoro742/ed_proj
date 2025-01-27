@@ -5,7 +5,7 @@ from scipy.spatial.distance import mahalanobis
 import warnings
 warnings.filterwarnings("ignore")
 # Load resorts.csv with specified encoding
-resorts = pd.read_csv('resorts.csv', encoding='latin1')
+resorts = pd.read_csv('../data/resorts.csv', encoding='latin1')
 threshold = np.sqrt(3)
 def abnormal_2d(resorts, col1, col2, threshold=threshold, plot=False):
     # Delete records where Price is equal to 0

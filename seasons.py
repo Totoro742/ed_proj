@@ -3,7 +3,7 @@ import numpy as np
 from datetime import datetime
 from scipy.spatial import cKDTree
 from functions.std_abnormal import std_abnormal
-from data.mahalanobis_abnormal import abnormal_3d
+from functions.mahalanobis_abnormal import abnormal_3d
 from functions.clustering import cluster_data
 from functions.util import hist_with_quantiles
 

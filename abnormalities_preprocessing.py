@@ -3,7 +3,7 @@ import pandas as pd
 from functions.classification import classify
 from seasons import precompute_season_lengths, compute_average_snow
 from functions.std_abnormal import std_abnormal
-from data.mahalanobis_abnormal import abnormal_3d
+from functions.mahalanobis_abnormal import abnormal_3d
 
 # Load the data
 resorts = pd.read_csv("data/resorts.csv", encoding='latin1')
